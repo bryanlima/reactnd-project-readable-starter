@@ -7,8 +7,8 @@ import {
 } from '../util/api'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
-export const UP_VOTE = 'UP_VOTE'
-export const DOWN_VOTE = 'DOWN_VOTE'
+export const POST_UP_VOTE = 'POST_UP_VOTE'
+export const POST_DOWN_VOTE = 'POST_DOWN_VOTE'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const ADD_POST = 'ADD_POST'
@@ -22,14 +22,14 @@ export function receivePosts (posts) {
 
 export function upVote (post) {
   return {
-    type: UP_VOTE,
+    type: POST_UP_VOTE,
     post
   }
 }
 
 export function downVote (post) {
   return {
-    type: DOWN_VOTE,
+    type: POST_DOWN_VOTE,
     post
   }
 }

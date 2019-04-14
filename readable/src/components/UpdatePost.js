@@ -6,14 +6,19 @@ import { Redirect } from 'react-router-dom'
 class UpdatePost extends React.Component {
 
   state = {
-    ...this.defaultState(this.state)
+    title: this.props.post.title,
+    body: this.props.post.body,
+    toHome: false
   }
 
-  defaultState(state) {
+  defaultState(state, props) {
+
+    const { post } = props;
+
     return {
       ...state,
-      title: '',
-      body: '',
+      title: post.title || '',
+      body: post.body || '',
       toHome: false
     }
   }
@@ -38,7 +43,9 @@ class UpdatePost extends React.Component {
 
     this.props.dispatch(handleUpdatePost(id, title, body));
     this.setState((s) => ({
-      ...this.defaultState(s),
+      // ...this.defaultState(s, this.props),
+      title: '',
+      body: '',
       toHome: true
     }));
   }

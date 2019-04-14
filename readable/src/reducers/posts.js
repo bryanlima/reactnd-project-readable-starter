@@ -1,7 +1,7 @@
 import {
   RECEIVE_DATA,
-  UP_VOTE,
-  DOWN_VOTE,
+  POST_UP_VOTE,
+  POST_DOWN_VOTE,
   UPDATE_POST,
   ADD_POST,
   DELETE_POST
@@ -17,12 +17,12 @@ export function posts (state = {}, action) {
         ...state,
         ...p
       }
-    case UP_VOTE:
+    case POST_UP_VOTE:
       return {
         ...state,
         [action.post.id]: action.post
       }
-    case DOWN_VOTE:
+    case POST_DOWN_VOTE:
       return {
         ...state,
         [action.post.id]: action.post

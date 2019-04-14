@@ -12,19 +12,19 @@ class Post extends React.Component {
   upVote = (e) => {
     e.preventDefault();
 
-    this.props.dispatch(handleUpVote(this.props.post.id));
+    this.props.upVote();
   }
 
   downVote = (e) => {
     e.preventDefault();
 
-    this.props.dispatch(handleDownVote(this.props.post.id));
+    this.props.downVote();
   }
 
   deletePost = (e) => {
     e.preventDefault();
 
-    this.props.dispatch(handleDeletePost(this.props.post.id));
+    // this.props.delete();
   }
 
   render() {
@@ -46,7 +46,7 @@ class Post extends React.Component {
             <div className='options'>
               <ul>
                 <li>{commentCount} Comments</li>
-                <li><Link to={'/post/' + post.id}>Edit</Link></li>
+                <li><Link to={'/post/' + post.id + '/update'}>Edit</Link></li>
                 <li><a href='#' onClick={this.deletePost}>Delete</a></li>
               </ul>
             </div>
@@ -64,9 +64,16 @@ class Post extends React.Component {
 }
 
 function mapStateToProps({posts}, {id}) {
-  const post = posts[id];
-
+  const post = posts[id] || {};
   return { post };
 }
 
-export default connect(mapStateToProps)(Post);
+function mapDispatchToProps(dispatch, { id }) {
+  return {
+    upVote: () => dispatch(handleUpVote(id)),
+    downVote: () => dispatch(handleDownVote(id)),
+    delete: () => dispatch(handleDeletePost(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
