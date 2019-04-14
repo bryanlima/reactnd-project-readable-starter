@@ -34,13 +34,14 @@ function mapStateToProps({ comments, posts }, props) {
 
   const postId = props.match.params.id;
   const existPost = posts[postId] !== undefined;
+  const commentaryIds = Object.keys(comments).filter(id => comments[id].parentId === postId);
 
   return {
     existPost,
     postId,
-    commentaryIds: Object.keys(comments),
+    commentaryIds,
     comments
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch, { match }) {
