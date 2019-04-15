@@ -1,21 +1,19 @@
 import { receivePosts } from './posts';
-import { getPosts } from '../util/api';
+import { getCategories } from './categories'
+import {
+  getPosts,
+  getCategories as getCategoriesApi
+} from '../util/api';
 
 export function handleInitialData() {
   return (dispatch) => {
-    return getPosts().then(posts => dispatch(receivePosts(posts)));
+    return Promise.all([
+      getPosts(),
+      getCategoriesApi()
+    ])
+    .then(([posts, categories]) => {
+      dispatch(receivePosts(posts));
+      dispatch(getCategories(categories.categories));
+    })
   }
 }
-
-// export function handleInitialData() {
-//   return (dispatch) => {
-//     dispatch(showLoading())
-//     return getInitialData()
-//       .then(({ users, tweets }) => {
-//         dispatch(receiveUsers(users))
-//         dispatch(receiveTweets(tweets))
-//         dispatch(setAuthedUser(AUTHED_ID))
-//         dispatch(hideLoading())
-//       })
-//   }
-// }

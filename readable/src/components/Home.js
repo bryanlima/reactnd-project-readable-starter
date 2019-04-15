@@ -1,17 +1,29 @@
 import React from 'react'
 import Categories from './Categories'
-import Dashboard from './Dashboard'
+import PostList from './PostList'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import BaseLayout from './BaseLayout'
 
-export default class Home extends React.Component {
+class Home extends React.Component {
 
   render() {
-    return (
-      <span>
-        <Categories />
-        <Dashboard {...this.props} />
-        <Link to='/post/new'>New Post</Link>
-      </span>
+
+    const { postsIds } = this.props;
+    return (<BaseLayout postsIds={postsIds} />
+      // <span>
+      //   <Categories />
+      //   <PostList postsIds={postsIds} />
+      //   <Link to='/post/new'>New Post</Link>
+      // </span>
     )
   }
 }
+
+function mapStateToProps({posts}) {
+  return {
+    postsIds: Object.keys(posts)
+  }
+}
+
+export default connect(mapStateToProps)(Home);

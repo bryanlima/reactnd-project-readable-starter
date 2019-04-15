@@ -3,7 +3,7 @@ import Post from './Post'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-class Dashboard extends React.Component {
+class PostList extends React.Component {
   render() {
     return (
       <div style={{ marginLeft: '25%', width: 500 }}>
@@ -15,10 +15,10 @@ class Dashboard extends React.Component {
   }
 }
 
-function mapStateToProps({posts}) {
-  return {
-    postsIds: Object.keys(posts)
-  }
-}
+// function mapStateToProps({posts}) {
+//   return {
+//     postsIds: Object.keys(posts)
+//   }
+// }
 
-export default connect(mapStateToProps)(Dashboard);
+export default PostList;

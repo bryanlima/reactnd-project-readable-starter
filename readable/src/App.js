@@ -11,6 +11,7 @@ import UpdatePost from './components/UpdatePost'
 import PostDetails from './components/PostDetails'
 import UpdateComment from './components/UpdateComment'
 import NotFound from './components/NotFound'
+import Category from './components/Category'
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         <Switch>
@@ -27,6 +29,7 @@ class App extends Component {
           <Route path='/post/:id' exact component={PostDetails} />
           <Route path='/post/:id/update' component={UpdatePost} />
           <Route path='/comment/:id/update' component={UpdateComment} />
+          <Route path='/:category' component={Category} />
           <Route component={NotFound} />
         </Switch>
       </div>

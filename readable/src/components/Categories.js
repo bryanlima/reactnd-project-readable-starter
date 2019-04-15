@@ -1,14 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
+
   render() {
+
+    const { categories } = this.props;
+
     return (
       <ul className='categories'>
-        <li>Categoria 1</li>
-        <li>Categoria 2</li>
-        <li>Categoria 3</li>
-        <li>Categoria 4</li>
+        {categories.length > 0 && categories.map(category => <li><Link to={category.path}>{category.name}</Link></li>)}
       </ul>
     )
   }
 }
+
+function mapStateToProps({ categories }) {
+  return {
+    categories
+  }
+}
+
+export default connect(mapStateToProps)(Categories)

@@ -167,3 +167,13 @@ export const getCommentById = (id) =>
   })
   .then(res => res.json())
   .then(data => data)
+
+export const getCategories = () =>
+  fetch(`${api}/categories`, {
+    method: 'GET',
+    headers: {
+      ...headers
+    }
+  })
+  .then(res => res.json())
+  .then(data => data)
