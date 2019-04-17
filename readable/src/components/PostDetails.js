@@ -32,7 +32,7 @@ class PostDetails extends React.Component {
 
 function mapStateToProps({ comments, posts }, props) {
 
-  const postId = props.match.params.id;
+  const postId = props.match.params.postId;
   const existPost = posts[postId] !== undefined;
   const commentaryIds = Object.keys(comments).filter(id => comments[id].parentId === postId);
 
@@ -45,7 +45,7 @@ function mapStateToProps({ comments, posts }, props) {
 }
 
 function mapDispatchToProps(dispatch, { match }) {
-  const postId = match.params.id;
+  const postId = match.params.postId;
   return {
     getComments: () => dispatch(handleGetComments(postId))
   }

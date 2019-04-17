@@ -8,7 +8,7 @@ class UpdatePost extends React.Component {
   state = {
     title: this.props.post.title,
     body: this.props.post.body,
-    toHome: false
+    toDetails: false
   }
 
   defaultState(state, props) {
@@ -19,7 +19,7 @@ class UpdatePost extends React.Component {
       ...state,
       title: post.title || '',
       body: post.body || '',
-      toHome: false
+      toDetails: false
     }
   }
 
@@ -46,17 +46,18 @@ class UpdatePost extends React.Component {
       // ...this.defaultState(s, this.props),
       title: '',
       body: '',
-      toHome: true
+      toDetails: true
     }));
   }
 
   render() {
 
-    if (this.state.toHome === true) {
-      return <Redirect to='/' />
+    const { post } = this.props;
+
+    if (this.state.toDetails === true) {
+      return <Redirect to={`/${post.category}/${post.id}`} />
     }
 
-    const { post } = this.props;
 
     const { title, body, author, voteScore, commentCount } = post;
 
