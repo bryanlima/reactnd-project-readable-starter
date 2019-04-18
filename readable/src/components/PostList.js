@@ -9,9 +9,9 @@ class PostList extends React.Component {
 
     return (
       <div style={{ marginLeft: '25%', width: 500 }}>
-        {posts.length > 0 && (posts.map(obj => (
+        {posts.map(obj => (
           <Link to={obj.category + '/' + obj.id}><Post id={obj.id} /></Link>
-        )))}
+        ))}
       </div>
     )
   }
@@ -19,7 +19,8 @@ class PostList extends React.Component {
 
 function mapStateToProps({ posts }, { postsIds }) {
 
-  const newPosts = postsIds.map(id => { return { id, category: posts[id].category } });
+  let newPosts = postsIds.map(id => { return { id, category: posts[id].category } });
+  newPosts = newPosts.length > 0 ? newPosts : [];
 
   return {
     posts: newPosts

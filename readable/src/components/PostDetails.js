@@ -24,7 +24,7 @@ class PostDetails extends React.Component {
       <div>
         <Post id={postId} />
         <NewComment postId={postId} />
-        {commentaryIds.length > 0 && (commentaryIds.map(id => <span key={id}><Comment id={id} comment={comments[id]} /></span>))}
+        {commentaryIds.map(id => <span key={id}><Comment id={id} comment={comments[id]} /></span>)}
       </div>
     );
   }

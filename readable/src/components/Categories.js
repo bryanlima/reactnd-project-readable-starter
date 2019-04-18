@@ -10,15 +10,16 @@ class Categories extends React.Component {
 
     return (
       <ul className='categories'>
-        {categories.length > 0 && categories.map(category => <li><Link to={category.path}>{category.name}</Link></li>)}
+        {categories.map(category => <li><Link to={category.path}>{category.name}</Link></li>)}
       </ul>
     )
   }
 }
 
 function mapStateToProps({ categories }) {
+  const newCategories = categories.length > 0 ? categories : [];
   return {
-    categories
+    categories: newCategories
   }
 }
 
