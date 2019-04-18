@@ -52,12 +52,6 @@ class Post extends React.Component {
             </div>
           </div>
         </div>
-
-        {/* <div style={{float: 'none', width: 450}}>
-          <Comment />
-          <Comment />
-        </div> */}
-        {/* <Comment /> */}
       </div>
     )
   }
