@@ -14,7 +14,8 @@ class NewPost extends React.Component {
       ...state,
       title: '',
       body: '',
-      toHome: false
+      toHome: false,
+      category: ''
     }
   }
 
@@ -30,12 +31,22 @@ class NewPost extends React.Component {
     this.setState(() => ({ body }));
   }
 
+  handleCategoryChange = (e) => {
+    e.preventDefault();
+
+    const category = e.target.value;
+
+    this.setState(() => ({
+      category
+    }));
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, body } = this.state;
+    const { title, body, category } = this.state;
 
-    this.props.dispatch(handleAddPost(title, body, 'pessoa 1', 'redux'));
+    this.props.dispatch(handleAddPost(title, body, 'pessoa 1', category));
     this.setState((s) => ({
       ...this.defaultState(s),
       toHome: true
@@ -48,17 +59,34 @@ class NewPost extends React.Component {
       return <Redirect to='/' />
     }
 
+    const { categories } = this.props;
+    console.log('categories', categories);
+
     return (
       <div>
         <form onSubmit={this.onSubmit}>
+          <p>Title</p>
           <input type='text' id='title' placeholder='Title' onChange={this.handleTitleChange} />
+          <p>Body</p>
           <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} />
+          <p>Category</p>
+          <select onChange={this.handleCategoryChange}>
+            {categories.map(category => <option value={category.name}>{category.name}</option>)}
+          </select>
 
-          <button>Send</button>
+          <p><button>Send</button></p>
         </form>
       </div>
     )
   }
 }
 
-export default connect()(NewPost)
+function mapStateToProps({ categories }) {
+
+  const newCategories = categories.length > 0 ? categories : [];
+  return {
+    categories: newCategories
+  }
+}
+
+export default connect(mapStateToProps)(NewPost)
