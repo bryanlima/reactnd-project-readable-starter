@@ -24,7 +24,7 @@ class Post extends React.Component {
   deletePost = (e) => {
     e.preventDefault();
 
-    // this.props.delete();
+    this.props.delete();
   }
 
   render() {
