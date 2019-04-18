@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../index.css';
 
-import { handleInitialData } from './actions/shared'
+import { handleInitialData } from '../actions/shared'
 
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import Home from './components/Home'
-import NewPost from './components/NewPost'
-import UpdatePost from './components/UpdatePost'
-import PostDetails from './components/PostDetails'
-import UpdateComment from './components/UpdateComment'
-import NotFound from './components/NotFound'
-import Category from './components/Category'
+import Home from './Home'
+import NewPost from './NewPost'
+import UpdatePost from './UpdatePost'
+import PostDetails from './PostDetails'
+import UpdateComment from './UpdateComment'
+import NotFound from './NotFound'
+import Category from './Category'
 
 class App extends Component {
 
@@ -26,8 +26,8 @@ class App extends Component {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/post/new' exact component={NewPost} />
-          <Route path='/:category/:postId' exact component={PostDetails} />
           <Route path='/post/:id/update' component={UpdatePost} />
+          <Route path='/:category/:postId' exact component={PostDetails} />
           <Route path='/comment/:id/update' component={UpdateComment} />
           <Route path='/:category' component={Category} />
           <Route component={NotFound} />

@@ -12,3 +12,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+* { font-size: 14px; text-align: left; }
+
+.post { width: 100%; background-color: white; float: left; min-height: 100px; border: 1px solid black; }
+.post .vote { width: 50px; background-color: lightgray; float: left; min-height: 100px; height: 100%; }
+.post .content { float: left; min-height: 100px; }
+.post .content .author { color: gray; }
+.post .content .title { color: black; }
+.post .content .message { color: black; }
+.post .content .options { color: lightgray;  }
+.post .content .options ul { list-style: none; padding: 0; }
+.post .content .options ul li { display: inline; padding-right: 30px; }
+
+.comment { width: 100%; background-color: red; float: left; min-height: 100px; }
+.comment .vote { width: 50px; background-color: lightgray; float: left; min-height: 100px; height: 100%; }
+.comment .content { float: left; min-height: 100px; }
+.comment .content .author { color: gray; }
+.comment .content .title { color: black; }
+.comment .content .message { color: black; }
+.comment .content .options { color: lightgray;  }
+.comment .content .options ul { list-style: none; padding: 0; }
+.comment .content .options ul li { display: inline; padding-right: 30px; }
+
+.categories { list-style: none; float: left; }
