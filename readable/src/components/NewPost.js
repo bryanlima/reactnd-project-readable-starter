@@ -46,7 +46,7 @@ class NewPost extends React.Component {
 
     const { title, body, category } = this.state;
 
-    this.props.dispatch(handleAddPost(title, body, 'pessoa 1', category));
+    this.props.addPost(title, body, category);
     this.setState((s) => ({
       ...this.defaultState(s),
       toHome: true
@@ -89,4 +89,11 @@ function mapStateToProps({ categories }) {
   }
 }
 
-export default connect(mapStateToProps)(NewPost)
+function mapDispatchToProps(dispatch) {
+
+  return {
+    addPost: (title, body, category) => dispatch(handleAddPost(title, body, 'pessoa 1', category))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost)
