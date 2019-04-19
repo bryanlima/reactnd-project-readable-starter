@@ -14,7 +14,6 @@ export default class BaseLayout extends React.Component {
 
     return (
     <span>
-      <Categories />
       <PostList postsIds={this.props.postsIds} />
       <Link to='/post/new'>New Post</Link>
       <PostListOrderBy orderBy={this.handleOrderBy} order={this.props.order} />

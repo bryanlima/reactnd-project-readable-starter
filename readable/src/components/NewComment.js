@@ -36,10 +36,11 @@ class NewComment extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style={ { margin: '20px 0 10px 0'} }>
         <form onSubmit={this.onSubmit}>
-          <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} />
+          <input type='text' id='body' placeholder='comentary' onChange={this.handleBodyChange} />
 
+          <br />
           <button>Send comment</button>
         </form>
       </div>

@@ -21,7 +21,7 @@ class PostDetails extends React.Component {
     }
 
     return (
-      <div>
+      <div style={ { width: 500, float: 'left' } }>
         <Post id={postId} />
         <NewComment postId={postId} />
         {commentaryIds.map(id => <span key={id}><Comment id={id} comment={comments[id]} /></span>)}

@@ -63,23 +63,27 @@ class UpdateComment extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <div className='post'>
-          <div className='vote'>
-            <div>Score</div>
-            <div>{voteScore}</div>
-          </div>
-          <div className='content'>
-            <div className='author'>Posted by {author}</div>
-            <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} defaultValue={body} />
-            <div className='options'>
-              <ul>
-                <li><a href='#' onClick={this.handleDelete}>Delete</a></li>
-              </ul>
+        <div style={{ width: 500, float: 'left' }}>
+          <div className='post'>
+            <div className='vote'>
+              <div>Score</div>
+              <div>{voteScore}</div>
+            </div>
+            <div className='content'>
+              <div className='author'>Posted by {author}</div>
+              <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} defaultValue={body} />
+              <div className='options'>
+                <ul>
+                  <li><a href='#' onClick={this.handleDelete}>Delete</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        <button>Save</button>
+          <div class='box'>
+            <button>Save</button>
+          </div>
+        </div>
       </form>
     )
   }

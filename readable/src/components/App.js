@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../index.css';
-
 import { handleInitialData } from '../actions/shared'
-
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import Home from './Home'
@@ -12,6 +10,7 @@ import PostDetails from './PostDetails'
 import UpdateComment from './UpdateComment'
 import NotFound from './NotFound'
 import Category from './Category'
+import Categories from './Categories'
 
 class App extends Component {
 
@@ -23,6 +22,8 @@ class App extends Component {
 
     return (
       <div className="App">
+      <Fragment>
+        <Categories />
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/post/new' exact component={NewPost} />
@@ -32,6 +33,7 @@ class App extends Component {
           <Route path='/:category' component={Category} />
           <Route component={NotFound} />
         </Switch>
+        </Fragment>
       </div>
     );
   }

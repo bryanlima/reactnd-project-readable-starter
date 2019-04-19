@@ -63,18 +63,23 @@ class NewPost extends React.Component {
     console.log('categories', categories);
 
     return (
-      <div>
+      <div class='newPost'>
         <form onSubmit={this.onSubmit}>
-          <p>Title</p>
-          <input type='text' id='title' placeholder='Title' onChange={this.handleTitleChange} />
-          <p>Body</p>
-          <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} />
-          <p>Category</p>
-          <select onChange={this.handleCategoryChange}>
-            {categories.map(category => <option value={category.name}>{category.name}</option>)}
-          </select>
 
-          <p><button>Send</button></p>
+          <label>Title</label>
+          <input type='text' id='title' placeholder='Title' onChange={this.handleTitleChange} />
+
+          <label>Body</label>
+          <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} />
+
+          <div class='box'>
+            <label>Category</label>
+            <select onChange={this.handleCategoryChange}>
+              {categories.map(category => <option value={category.name}>{category.name}</option>)}
+            </select>
+
+            <p><button>Add new post</button></p>
+          </div>
         </form>
       </div>
     )

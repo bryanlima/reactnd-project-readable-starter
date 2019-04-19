@@ -81,25 +81,31 @@ class UpdatePost extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <div className='post'>
-          <div className='vote'>
-            <div>Score</div>
-            <div>{voteScore}</div>
-          </div>
-          <div className='content'>
-            <div className='author'>Posted by {author}</div>
-            <input type='text' id='title' placeholder='Title' onChange={this.handleTitleChange} defaultValue={title} />
-            <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} defaultValue={body} />
-            <div className='options'>
-              <ul>
-                <li>{commentCount} Comments</li>
-                <li><a href='#' onClick={this.handleDeletePost}>Delete</a></li>
-              </ul>
+        <div style={ { width: 500, float: 'left' } }>
+          <div className='post'>
+            <div className='vote'>
+              <div>Score</div>
+              <div>{voteScore}</div>
             </div>
+            <div className='content'>
+              <div className='author'>Posted by {author}</div>
+              <input type='text' id='title' placeholder='Title' onChange={this.handleTitleChange} defaultValue={title} />
+              <br />
+              <input type='text' id='body' placeholder='Body' onChange={this.handleBodyChange} defaultValue={body} />
+              <div className='options'>
+                <ul>
+                  <li>{commentCount} Comments</li>
+                  <li><a href='#' onClick={this.handleDeletePost}>Delete</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ float: 'left', width: '100%' }}>
+            <button>Save</button>
           </div>
         </div>
 
-        <button>Save</button>
       </form>
     )
   }

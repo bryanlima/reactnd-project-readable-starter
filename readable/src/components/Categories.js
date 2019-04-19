@@ -10,7 +10,7 @@ class Categories extends React.Component {
 
     return (
       <ul className='categories'>
-        {categories.map(category => <li><Link to={category.path}>{category.name}</Link></li>)}
+        {categories.map(category => <li><Link to={'/' + category.path}>{category.name}</Link></li>)}
       </ul>
     )
   }
