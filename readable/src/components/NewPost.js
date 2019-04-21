@@ -12,21 +12,39 @@ class NewPost extends React.Component {
   defaultState(state) {
     return {
       ...state,
-      title: '',
-      body: '',
+      title: {
+        value: '',
+        valid: false
+      },
+      body: {
+        value: '',
+        valid: false
+      },
       toHome: false,
-      category: ''
+      category: {
+        value: this.props.categories[0].name,
+        valid: true
+      }
     }
   }
 
   handleTitleChange = (e) => {
-    const title = e.target.value;
+    const value = e.target.value.trim();
+    const title = {
+      value,
+      valid: value !== ''
+    }
 
     this.setState(() => ({ title }));
   }
 
   handleBodyChange = (e) => {
-    const body = e.target.value;
+    const value = e.target.value.trim();
+    const body = {
+      value,
+      valid: value !== ''
+    }
+
 
     this.setState(() => ({ body }));
   }
@@ -34,7 +52,11 @@ class NewPost extends React.Component {
   handleCategoryChange = (e) => {
     e.preventDefault();
 
-    const category = e.target.value;
+    const value = e.target.value.trim();
+    const category = {
+      value,
+      valid: value !== ''
+    }
 
     this.setState(() => ({
       category
@@ -44,13 +66,22 @@ class NewPost extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, body, category } = this.state;
+    if (this.isValid(this.state)) {
 
-    this.props.addPost(title, body, category);
-    this.setState((s) => ({
-      ...this.defaultState(s),
-      toHome: true
-    }));
+      const { title, body, category, } = this.state;
+
+      this.props.addPost(title.value, body.value, category.value);
+      this.setState((s) => ({
+        ...this.defaultState(s),
+        toHome: true
+      }));
+    }
+  }
+
+  isValid(state) {
+    const { title, body, category } = state;
+
+    return title.valid && body.valid && category.valid;
   }
 
   render() {
@@ -60,7 +91,6 @@ class NewPost extends React.Component {
     }
 
     const { categories } = this.props;
-    console.log('categories', categories);
 
     return (
       <div class='newPost'>
@@ -78,7 +108,7 @@ class NewPost extends React.Component {
               {categories.map(category => <option value={category.name}>{category.name}</option>)}
             </select>
 
-            <p><button>Add new post</button></p>
+            <p><button disabled={!this.isValid(this.state)}>Add new post</button></p>
           </div>
         </form>
       </div>

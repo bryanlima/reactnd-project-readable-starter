@@ -1,5 +1,4 @@
 import React from 'react'
-import Categories from './Categories'
 import PostList from './PostList'
 import { Link } from 'react-router-dom'
 import PostListOrderBy from './PostListOrderBy';

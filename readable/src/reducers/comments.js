@@ -43,7 +43,7 @@ export function comments(state = {}, action) {
       }
     case DELETE_COMMENT:
 
-      const newState = state;
+      const newState = { ...state };
       delete newState[action.id];
 
       return {

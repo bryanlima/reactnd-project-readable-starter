@@ -8,6 +8,11 @@ import {
   getCommentById
 } from '../util/api'
 
+import {
+  decrementCommentCount,
+  incrementCommentCount
+} from './posts'
+
 export const GET_COMMENT = 'GET_COMMENT'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const COMMENT_UP_VOTE = 'COMMENT_UP_VOTE'
@@ -62,12 +67,15 @@ export function newComment(comment) {
 export function handleAddComment(postId, author, body) {
   return (dispatch) =>
     addComment(postId, body, author)
-    .then(comment => dispatch(newComment(comment)))
+    .then(comment => {
+      dispatch(newComment(comment))
+      dispatch(incrementCommentCount(comment.parentId))
+    })
 }
 
 export function editComment(id, body, timestamp) {
   return {
-    type: DELETE_COMMENT,
+    type: UPDATE_COMMENT,
     id,
     body,
     timestamp
@@ -77,7 +85,7 @@ export function editComment(id, body, timestamp) {
 export function handleUpdateComment(id, body) {
   return (dispatch) =>
     updateComment(id, body)
-    .then(comment => { console.log('handleupdatecomment', comment); dispatch(editComment(comment.id, comment.body, comment.timestamp))})
+    .then(comment => dispatch(editComment(comment.id, comment.body, comment.timestamp)))
 }
 
 export function delComment(id) {
@@ -88,7 +96,10 @@ export function delComment(id) {
 }
 
 export function handleDelete(id) {
-  return (dispatch) => deleteComment(id).then(comment => dispatch(delComment(comment.id)))
+  return (dispatch) => deleteComment(id).then(comment => {
+    dispatch(delComment(comment.id))
+    dispatch(decrementCommentCount(comment.parentId))
+  })
 }
 
 export function getComment(comment) {

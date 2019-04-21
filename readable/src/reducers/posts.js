@@ -4,7 +4,9 @@ import {
   POST_DOWN_VOTE,
   UPDATE_POST,
   ADD_POST,
-  DELETE_POST
+  DELETE_POST,
+  DECREMENT_POST_COMMENT,
+  INCREMENT_POST_COMMENT
 } from '../actions/posts'
 
 export function posts (state = {}, action) {
@@ -44,11 +46,27 @@ export function posts (state = {}, action) {
         [action.post.id]: action.post
       };
     case DELETE_POST:
-      const newState = state;
+      const newState =  { ...state };
       delete newState[action.id];
 
       return {
         ...newState
+      };
+    case DECREMENT_POST_COMMENT:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          commentCount: state[action.id].commentCount - 1
+        }
+      };
+    case INCREMENT_POST_COMMENT:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          commentCount: state[action.id].commentCount + 1
+        }
       };
     default:
       return state;

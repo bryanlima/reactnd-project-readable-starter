@@ -15,7 +15,7 @@ import Categories from './Categories'
 class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData());
+    this.props.getInitalData();
   }
 
   render() {
@@ -39,4 +39,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+function mapDispatchToProps(dispatch) {
+
+  return {
+    getInitalData: () => dispatch(handleInitialData())
+  }
+}
+export default connect(null, mapDispatchToProps)(App)
